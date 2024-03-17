@@ -6,4 +6,25 @@ services:
     volumes:
       - ./src/:/app/
     ports:
-      - 8000:8000
+      - "8000:8000"
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3.8-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_VHOST: vhost
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  celery_worker:
+    build: ./src
+    command: celery -A app.celery_worker worker --loglevel=info
+    depends_on:
+      - rabbitmq
+      - api
+
+    stdin_open: true
