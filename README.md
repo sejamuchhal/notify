@@ -45,5 +45,9 @@ curl -X 'POST' \
 }'
 ```
 
+## Access Flower Dashboard
 
-If you have any suggestions or encounter issues, feel free to reach out to me at sejamuchhal@gmail.com
+The Flower dashboard provides task monitoring. Open the dashboard in browser at http://localhost:5556.
+
+
+--- If you have any suggestions or encounter issues, feel free to reach out to me at sejamuchhal@gmail.com --- 
