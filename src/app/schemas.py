@@ -1,17 +1,17 @@
 from typing import Dict, List, Optional
 from pydantic import BaseModel, EmailStr, validator
 
+class EmailRecipient(BaseModel):
+    name: str
+    email: EmailStr
 
 class EmailReq(BaseModel):
   body: str
   subject: str
-  recipients: List[EmailStr]
-  sender: Optional[EmailStr] = None
+  recipients: List[EmailRecipient]
+  sender: Optional[EmailRecipient] = None
   html_content: Optional[str] = None
 
-  @classmethod
-  def from_dict(cls, data: Dict):
-    return cls(**data)
 class NotificationRequest(BaseModel):
     channels: List[str]
     email_req: Optional[EmailReq] = None
