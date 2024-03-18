@@ -1,16 +1,20 @@
-from typing import List, Optional
+from typing import Dict, List, Optional
 from pydantic import BaseModel, EmailStr, validator
 
+class EmailRecipient(BaseModel):
+    name: str
+    email: EmailStr
 
-class EmailNotification(BaseModel):
-    body: str
-    subject: str
-    recipients: List[EmailStr]
-    sender: EmailStr
+class EmailReq(BaseModel):
+  sender: Optional[EmailRecipient] = None
+  recipients: List[EmailRecipient]
+  subject: str
+  plaintext_content: Optional[str] = None
+  html_content: Optional[str] = None
 
 class NotificationRequest(BaseModel):
     channels: List[str]
-    email: Optional[EmailNotification] = None
+    email_req: Optional[EmailReq] = None
 
     @validator("channels")
     def validate_channels(cls, value):

@@ -23,6 +23,10 @@ services:
   celery_worker:
     build: ./src
     command: celery -A app.celery_worker worker --loglevel=info
+    environment:
+      MAILERSEND_API_KEY: <api_key>
+      DEFAULT_SENDER_NAME: <sender_name>
+      DEFAULT_SENDER_EMAIL: <sender_email>
     depends_on:
       - rabbitmq
       - api
