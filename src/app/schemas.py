@@ -6,10 +6,10 @@ class EmailRecipient(BaseModel):
     email: EmailStr
 
 class EmailReq(BaseModel):
-  body: str
-  subject: str
-  recipients: List[EmailRecipient]
   sender: Optional[EmailRecipient] = None
+  recipients: List[EmailRecipient]
+  subject: str
+  plaintext_content: Optional[str] = None
   html_content: Optional[str] = None
 
 class NotificationRequest(BaseModel):
