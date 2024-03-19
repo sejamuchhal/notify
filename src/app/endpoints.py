@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from app.schemas import NotificationRequest
-from app.celery_worker import send_notification_task
+from worker import send_notification_task
 
 router = APIRouter()
 

@@ -22,7 +22,7 @@ services:
 
   celery_worker:
     build: ./src
-    command: celery -A app.celery_worker worker --loglevel=info
+    command: celery --app=worker.app worker --loglevel=debug
     environment:
       MAILERSEND_API_KEY: <api_key>
       DEFAULT_SENDER_NAME: <sender_name>
@@ -34,7 +34,7 @@ services:
 
   flower:
     build: ./src
-    command: celery -A app.celery_worker flower --port=5555
+    command: celery --app=worker.app flower --port=5555 --conf="./flowerconfig.py"
     ports:
       - 5556:5555
     depends_on:
