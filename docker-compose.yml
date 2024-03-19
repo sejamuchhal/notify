@@ -1,8 +1,8 @@
 version: '3.1'
 services:
   api:
-    build: ./src
-    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    build: .
+    command: uvicorn api.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     volumes:
       - ./src/:/app/
     ports:
@@ -21,8 +21,8 @@ services:
       RABBITMQ_DEFAULT_PASS: guest
 
   celery_worker:
-    build: ./src
-    command: celery -A app.celery_worker worker --loglevel=info
+    build: .
+    command: celery --app=api.main.celery_app worker --queues=notification --loglevel=debug
     environment:
       MAILERSEND_API_KEY: <api_key>
       DEFAULT_SENDER_NAME: <sender_name>
@@ -33,8 +33,8 @@ services:
     stdin_open: true
 
   flower:
-    build: ./src
-    command: celery -A app.celery_worker flower --port=5555
+    build: .
+    command: celery --app=api.main.celery_app  flower --port=5555 --conf="./flowerconfig.py"
     ports:
       - 5556:5555
     depends_on:
