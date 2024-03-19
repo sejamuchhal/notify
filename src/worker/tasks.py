@@ -2,9 +2,10 @@ from typing import Dict, Union
 
 from notification_handler.factory import get_notification_handler
 
-from celeryconfig import app
+from celery import shared_task
 
-@app.task(name="send_notification_task")
+
+@shared_task(name='send_notification_task')
 def send_notification_task(request: Dict) -> Dict[str, Union[str, Dict]]:
   channels = request.get("channels", [])
   responses = {}
