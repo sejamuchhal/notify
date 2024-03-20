@@ -24,9 +24,9 @@ services:
     build: .
     command: celery --app=api.main.celery_app worker --queues=notification --loglevel=debug
     environment:
-      MAILERSEND_API_KEY: mlsn.88770d51d3f5c8e2568aa2c363de34f0df45a951163d2340342f56e758788937
-      DEFAULT_SENDER_NAME: Sejaaa
-      DEFAULT_SENDER_EMAIL: support@clarifyme.in
+      MAILERSEND_API_KEY: <api_key>
+      DEFAULT_SENDER_NAME: <sender_name>
+      DEFAULT_SENDER_EMAIL: <sender_email>
     depends_on:
       - rabbitmq
       - api

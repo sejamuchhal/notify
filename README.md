@@ -45,6 +45,8 @@ curl -X 'POST' \
 }'
 ```
 
+> Check [docs](docs/template_based_notification.md) for details on creating and managing template-based notifications.
+
 ## Access Flower Dashboard
 
 The Flower dashboard provides task monitoring. Open the dashboard in browser at http://localhost:5556.
