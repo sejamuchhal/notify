@@ -3,9 +3,10 @@ from celery.result import AsyncResult
 
 import settings
 
+
 def create_celery_app():
     app = Celery(
-        main='__main__',
+        main="__main__",
         broker_url=settings.CELERY_BROKER_URL,
         backend=settings.CELERY_RESULT_BACKEND,
     )
@@ -16,7 +17,9 @@ def create_celery_app():
     )
     return app
 
+
 celery_app = create_celery_app()
+
 
 def get_task_info(task_id):
     """
