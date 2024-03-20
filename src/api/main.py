@@ -11,6 +11,7 @@ app.celery_app = celery_app
 
 app.include_router(endpoints.router)
 
+
 # Health check route
 @app.get("/ping")
 def ping():
