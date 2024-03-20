@@ -19,6 +19,7 @@ class EmailNotificationChannel(NotificationChannel):
         Sends an email notification based on the provided request details.
         """
         email_req = request.get("email_req", {})
+        attachments = request.get("attachments", [])
 
         try:
             mail_from = {
@@ -65,6 +66,9 @@ class EmailNotificationChannel(NotificationChannel):
             self.mailer.set_mail_from(mail_from, self.mail_body)
             self.mailer.set_mail_to(recipients, self.mail_body)
             self.mailer.set_subject(subject, self.mail_body)
+
+            if attachments:
+                self.mailer.set_attachments(attachments, self.mail_body)
 
             response_string = self.mailer.send(self.mail_body)
             status_code, response_text = response_string.split("\n")

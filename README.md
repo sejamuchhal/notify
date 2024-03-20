@@ -50,6 +50,16 @@ curl -X 'POST' \
 }'
 ```
 
+### Sending email notification with attachments
+```
+curl --location 'http://localhost:8000/notifications/with_attachments' \
+--header 'accept: application/json' \
+--form 'data="{ \"channels\": [     \"email\"   ],   \"email_req\": {     \"sender\": {       \"name\": \"Flexnest Support\",       \"email\": \"support@theflexnest.com\"     },     \"recipients\": [       {         \"name\": \"Raj\",         \"email\": \"raj1234@gmail.com\"       }     ],     \"subject\": \"We'\''ve received your order\",     \"template_name\": \"order_confirmation\",      \"variables\": [       {         \"var\": \"company_name\",         \"value\": \"Flexnest\"       }, {         \"var\": \"order_link\",         \"value\": \"https://www.theflexnest.com/track-order?order_number=1234\"       }, {         \"var\": \"order_number\",         \"value\": \"1234\"       }, {         \"var\": \"customer_name\",         \"value\": \"Raj\"       }     ]   } }"' \
+--form 'files=@"attachment1.txt"' \
+--form 'files=@"attachment2.pdf"' \
+--form 'files=@"attachment3.png"'
+```
+
 > Check [docs](docs/template_based_notification.md) for details on creating and managing template-based notifications.
 
 ## Access Flower Dashboard

@@ -62,6 +62,7 @@ class EmailReq(BaseModel):
 class NotificationRequest(BaseModel):
     channels: List[str]
     email_req: Optional[EmailReq] = None
+    attachments: Optional[List[dict]] = None
 
     @validator("channels")
     def validate_channels(cls, value):
