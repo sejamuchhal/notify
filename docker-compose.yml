@@ -27,6 +27,7 @@ services:
     command: celery --app=api.main.celery_app worker --queues=notification --loglevel=debug
     environment:
       MAILERSEND_API_KEY: ${MAILERSEND_API_KEY}
+      DEFAULT_SENDER_EMAIL: ${DEFAULT_SENDER_EMAIL}
     depends_on:
       - rabbitmq
       - api
