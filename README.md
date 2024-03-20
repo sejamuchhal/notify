@@ -13,6 +13,11 @@ Docker: Ensure you have Docker installed on your system.
 git clone git@github.com:sejamuchhal/notify.git
 cd notify
 ```
+2. Create a `.env` file:
+```
+Rename the `.example.env` file to `.env`.
+Set MAILERSEND_API_KEY
+```
 2. Build and start the Docker containers:
 ```
 docker-compose up --build
