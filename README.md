@@ -16,7 +16,7 @@ cd notify
 2. Create a `.env` file:
 ```
 Rename the `.example.env` file to `.env`.
-Set MAILERSEND_API_KEY
+Set MAILERSEND_API_KEY and DEFAULT_SENDER_EMAIL
 ```
 2. Build and start the Docker containers:
 ```
